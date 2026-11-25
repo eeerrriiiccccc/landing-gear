@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retractable Landing Gear | Eric Zhang</title>
+<meta name="description" content="A 3-leg retractable rocket landing gear with integrated shock absorbers, designed in SolidWorks by Eric Zhang.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script type="module" src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --text: #14171c;
+    --muted: #5b6370;
+    --border: #e3e6eb;
+    --accent: #c2410c;
+    --accent-soft: #fff1e8;
+    --viewer-bg: radial-gradient(ellipse at 50% 35%, #ffffff 0%, #e9edf2 100%);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1115;
+      --surface: #171a20;
+      --text: #eceef2;
+      --muted: #9aa3b0;
+      --border: #2a2f38;
+      --accent: #fb923c;
+      --accent-soft: #2a1a10;
+      --viewer-bg: radial-gradient(ellipse at 50% 35%, #2a2f38 0%, #14171c 100%);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1115; --surface: #171a20; --text: #eceef2; --muted: #9aa3b0;
+    --border: #2a2f38; --accent: #fb923c; --accent-soft: #2a1a10;
+    --viewer-bg: radial-gradient(ellipse at 50% 35%, #2a2f38 0%, #14171c 100%);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 56px 0 24px; }
+  .eyebrow {
+    font: 500 12px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.1; margin: 12px 0 12px; letter-spacing: -0.02em; }
+  .lede { font-size: 18px; color: var(--muted); max-width: 680px; margin: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .tag {
+    font-size: 13px; padding: 4px 10px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+  }
+
+  .viewer-card {
+    position: relative; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+    background: var(--viewer-bg); margin: 16px 0 8px;
+  }
+  model-viewer { width: 100%; height: min(70vh, 560px); --poster-color: transparent; background: transparent; }
+  .viewer-hint {
+    position: absolute; left: 16px; bottom: 14px; font-size: 13px; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--border); padding: 4px 10px; border-radius: 8px;
+    pointer-events: none;
+  }
+  .caption { font-size: 14px; color: var(--muted); margin: 0 0 40px; }
+
+  section { padding: 28px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 22px; margin: 0 0 16px; letter-spacing: -0.01em; }
+  h3 { font-size: 17px; margin: 0 0 6px; }
+  p { margin: 0 0 12px; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .stat {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+  }
+  .stat .v { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .stat .k { font-size: 13px; color: var(--muted); }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+  }
+  .card p { color: var(--muted); margin: 0; }
+  .num {
+    display: inline-block; font: 500 12px/1 "JetBrains Mono", monospace; color: var(--accent);
+    background: var(--accent-soft); padding: 4px 7px; border-radius: 6px; margin-bottom: 10px;
+  }
+
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  figure { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  figure button { all: unset; cursor: zoom-in; display: block; width: 100%; }
+  figure img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; display: block; background: #eef1f5; }
+  figcaption { font-size: 14px; color: var(--muted); padding: 10px 14px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-weight: 600; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  td:first-child { font-weight: 500; white-space: nowrap; }
+  .table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+
+  ul.clean { margin: 0; padding-left: 20px; }
+  ul.clean li { margin-bottom: 8px; }
+
+  footer { padding: 32px 0 56px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); }
+
+  dialog { border: none; padding: 0; background: transparent; max-width: 94vw; max-height: 92vh; }
+  dialog::backdrop { background: rgba(0,0,0,.75); }
+  dialog img { max-width: 94vw; max-height: 88vh; border-radius: 10px; display: block; background: #fff; }
+  dialog p { color: #fff; text-align: center; margin: 8px 0 0; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Mechanical Design · SolidWorks</div>
+    <h1>Retractable Rocket Landing Gear</h1>
+    <p class="lede">A three-legged, retractable landing gear for a 3-meter vertical-landing rocket, with a spring-damper shock absorber built into every leg. I designed it solo from a blank part file to a fully mated assembly with drawings.</p>
+    <div class="tags">
+      <span class="tag">SolidWorks 2025</span>
+      <span class="tag">Assembly &amp; mechanism design</span>
+      <span class="tag">Advanced mates</span>
+      <span class="tag">Engineering drawings</span>
+      <span class="tag">Solo project</span>
+    </div>
+  </header>
+
+  <div class="viewer-card">
+    <model-viewer src="assets/landing_gear.glb" alt="3D model of the retractable landing gear assembly"
+      camera-controls auto-rotate auto-rotate-delay="1500" rotation-per-second="18deg"
+      shadow-intensity="0.8" exposure="1.05" camera-orbit="35deg 75deg auto"
+      interaction-prompt="none" touch-action="pan-y" loading="eager"
+      poster="assets/trimetric.png"></model-viewer>
+    <div class="viewer-hint">Drag to rotate · scroll or pinch to zoom</div>
+  </div>
+  <p class="caption">This is the live CAD model, exported straight from the final SolidWorks assembly.</p>
+
+  <section>
+    <h2>At a glance</h2>
+    <div class="stats">
+      <div class="stat"><div class="v">3</div><div class="k">Legs at 120° spacing</div></div>
+      <div class="stat"><div class="v">~3.0 m</div><div class="k">Deployed footprint</div></div>
+      <div class="stat"><div class="v">Ø500 mm</div><div class="k">Rocket body × 3,000 mm tall</div></div>
+      <div class="stat"><div class="v">9</div><div class="k">Custom parts, 28 components in the assembly</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What I built</h2>
+    <ul class="clean">
+      <li><strong>Engineered a 3-legged retractable landing gear system from scratch</strong> for a Ø500 mm × 3 m rocket in SolidWorks. I owned the full design cycle: concept, part modeling, mated assembly, and engineering drawings.</li>
+      <li><strong>Integrated a spring-damper shock absorber into each landing leg</strong> to dissipate touchdown impact energy and protect the airframe's structural integrity.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Design highlights</h2>
+    <div class="grid2">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>Folding three-segment legs</h3>
+        <p>Each leg is an upper arm, a ribbed mid-leg, and a bottom leg. They hinge from a body-mounted connector, so the legs fold flush against the airframe for flight and swing out for landing.</p>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>Shock absorber in every leg</h3>
+        <p>An 800 mm, Ø100 mm shock absorber sub-assembly (housing, cap, and a swept helical spring) runs along each leg and compresses on touchdown to soak up the impact load before it reaches the rocket body.</p>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>Mechanism modeled with mates</h3>
+        <p>I constrained the assembly with concentric, symmetric, limit-distance, rack-and-pinion, and linear-coupler mates. Deployment and shock travel move realistically in SolidWorks instead of sitting as frozen geometry.</p>
+      </div>
+      <div class="card">
+        <span class="num">04</span>
+        <h3>Built to be manufactured</h3>
+        <p>The connectors use standard counterbored M5 hex-bolt holes from the Hole Wizard, the legs use thin-wall extrusions and ribs to save weight, and the parts are documented in engineering drawings.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Views</h2>
+    <div class="gallery">
+      <figure><button data-full="assets/isometric.png" aria-label="Enlarge isometric view"><img src="assets/isometric.png" alt="Isometric view of the deployed landing gear" loading="lazy"></button><figcaption>Isometric: deployed</figcaption></figure>
+      <figure><button data-full="assets/front.png" aria-label="Enlarge front view"><img src="assets/front.png" alt="Front view of the landing gear" loading="lazy"></button><figcaption>Front view</figcaption></figure>
+      <figure><button data-full="assets/top.png" aria-label="Enlarge top view"><img src="assets/top.png" alt="Top view showing three legs at 120 degrees" loading="lazy"></button><figcaption>Top view: 120° leg layout</figcaption></figure>
+      <figure><button data-full="assets/exploded.png" aria-label="Enlarge exploded view"><img src="assets/exploded.png" alt="Exploded view of the landing gear assembly" loading="lazy"></button><figcaption>Exploded view: leg + shock absorber stack</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Parts list</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Part</th><th>Qty</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td>Rocket body</td><td>1</td><td>Ø500 mm shelled airframe tube (20 mm wall), 3,000 mm long, with engine nozzles</td></tr>
+          <tr><td>Connector</td><td>3</td><td>Body-mounted hinge bracket, bolted with M5 counterbored holes</td></tr>
+          <tr><td>Connector rod</td><td>3</td><td>Hinge pin between the connector and the upper leg</td></tr>
+          <tr><td>Upper leg</td><td>3</td><td>Lofted arm that carries the leg from the hinge</td></tr>
+          <tr><td>Mid leg</td><td>3</td><td>Ribbed thin-wall structural segment</td></tr>
+          <tr><td>Bottom leg</td><td>3</td><td>Ground-contact segment with an angled foot</td></tr>
+          <tr><td>Shock absorber (sub-assembly)</td><td>3</td><td>Housing + cap + helical spring that absorbs landing impact</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    Designed and modeled by Eric Zhang · SolidWorks 2025
+  </footer>
+</div>
+
+<dialog id="lightbox" aria-label="Enlarged image">
+  <img id="lightbox-img" alt="">
+  <p>Click anywhere or press Esc to close</p>
+</dialog>
+
+<script>
+  const dlg = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  document.querySelectorAll('figure button').forEach(b => {
+    b.addEventListener('click', () => {
+      img.src = b.dataset.full;
+      img.alt = b.querySelector('img').alt;
+      if (dlg.showModal) dlg.showModal();
+    });
+  });
+  dlg.addEventListener('click', () => dlg.close());
+
+  // The CAD export has no materials assigned, so give it a brushed-aluminum finish.
+  const mv = document.querySelector('model-viewer');
+  mv.addEventListener('load', () => {
+    for (const m of mv.model.materials) {
+      const pbr = m.pbrMetallicRoughness;
+      pbr.setBaseColorFactor([0.66, 0.69, 0.74, 1]);
+      pbr.setMetallicFactor(0.55);
+      pbr.setRoughnessFactor(0.42);
+    }
+  });
+</script>
+</body>
+</html>
