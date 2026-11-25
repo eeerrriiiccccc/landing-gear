@@ -3,8 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Retractable Landing Gear | Eric Zhang</title>
-<meta name="description" content="A 3-leg retractable rocket landing gear with integrated shock absorbers, designed in SolidWorks by Eric Zhang.">
+<title>Retractable Landing Gear | Junyu Zhang</title>
+<meta name="description" content="A 3-leg retractable rocket landing gear with integrated shock absorbers, designed in SolidWorks by Junyu Zhang.">
+<meta property="og:title" content="Retractable Rocket Landing Gear | Junyu Zhang">
+<meta property="og:description" content="3-leg retractable landing gear with a shock absorber in every leg, designed solo in SolidWorks. Interactive 3D model inside.">
+<meta property="og:image" content="https://eeerrriiiccccc.github.io/landing-gear/assets/trimetric.png">
+<meta property="og:url" content="https://eeerrriiiccccc.github.io/landing-gear/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -44,7 +50,11 @@
     font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
-  header { padding: 56px 0 24px; }
+  header { padding: 32px 0 24px; }
+  .topnav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0 0; gap: 12px; flex-wrap: wrap; font-size: 15px; }
+  .topnav a { text-decoration: none; color: var(--muted); }
+  .topnav a:hover { color: var(--text); }
+  .topnav .brand { font-weight: 700; color: var(--text); }
   .eyebrow {
     font: 500 12px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .08em;
     text-transform: uppercase; color: var(--accent);
@@ -116,6 +126,10 @@
 </head>
 <body>
 <div class="wrap">
+  <nav class="topnav">
+    <a class="brand" href="/">Junyu Zhang</a>
+    <a href="/#projects">← All projects</a>
+  </nav>
   <header>
     <div class="eyebrow">Mechanical Design · SolidWorks</div>
     <h1>Retractable Rocket Landing Gear</h1>
@@ -212,7 +226,7 @@
   </section>
 
   <footer>
-    Designed and modeled by Eric Zhang · SolidWorks 2025
+    Designed and modeled by <a href="/" style="color:inherit">Junyu Zhang</a> · SolidWorks 2025 · <a href="https://github.com/eeerrriiiccccc/landing-gear" style="color:inherit">Source on GitHub</a>
   </footer>
 </div>
 

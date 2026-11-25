@@ -1,23 +1,24 @@
-# Retractable Landing Gear: portfolio page
+# Retractable Rocket Landing Gear
 
-This is a static site with no build step: `index.html` plus `assets/` (the 3D model `landing_gear.glb` and the PNG views exported from SolidWorks).
+**Live project page (with interactive 3D model):** https://eeerrriiiccccc.github.io/landing-gear/
+Part of my portfolio: https://eeerrriiiccccc.github.io/
 
-## Publish on GitHub Pages (free, about 5 minutes)
+![Retractable landing gear, deployed](assets/trimetric.png)
 
-1. Sign in at github.com and create a **new public repository**, for example `landing-gear`.
-2. On the new repo's page, click **"uploading an existing file"**. Drag in `index.html`, `README.md`, and the whole `assets` folder, then click **Commit changes**.
-3. Go to **Settings → Pages**. Under *Build and deployment*, set **Source: Deploy from a branch**, **Branch: `main`**, folder **`/ (root)`**, then click **Save**.
-4. Wait about a minute and refresh. GitHub shows your live URL:
-   `https://<your-username>.github.io/landing-gear/`
-5. Open the link in a private/incognito window to confirm it works without signing in. Then put it on your resume, as a hyperlink on the project title.
+A three-legged retractable landing gear for a Ø500 mm × 3 m vertical-landing rocket, designed solo in SolidWorks 2025 from concept through part modeling, mated assembly, and engineering drawings.
 
-## Update later
+- **3 legs at 120°** with a deployed footprint of about 3.0 m
+- **Spring-damper shock absorber in every leg** (800 mm × Ø100 mm) to absorb touchdown impact and protect the airframe
+- **Mechanism modeled with mates** (concentric, symmetric, limit-distance, rack-and-pinion, linear coupler) so deployment and shock travel move in the assembly
+- **9 custom parts / 28 components**, M5 counterbored bolt interfaces, ribbed thin-wall leg segments
 
-Edit or replace files in the repo on github.com and commit. The site redeploys automatically within a minute.
+| Front | Top (120° layout) | Exploded |
+|---|---|---|
+| ![Front view](assets/front.png) | ![Top view](assets/top.png) | ![Exploded view](assets/exploded.png) |
 
-## Preview locally
+## Files
+- `index.html`: the project page (static HTML, served by GitHub Pages)
+- `assets/landing_gear.glb`: 3D model exported from the final SolidWorks assembly
+- `assets/*.png`: views rendered in SolidWorks
 
-```bash
-python -m http.server 8000
-```
-Then open http://localhost:8000. The 3D viewer needs a web server; opening `index.html` by double-click won't load the model.
+Junyu Zhang · University of Washington, Electrical & Computer Engineering
